@@ -27,20 +27,20 @@ I hope to provide a very brief overview of what I uncovered about the Minijam fi
 1. The entire disk is broken up into 512 byte "sectors. Each sector is identified by its position as an "sector ID", as three bytes, expressing byte offset in multiples of 256 bytes. For example, the first sector is offset 0x0 and sector ID 0x00 0x00 0x00, while the second sector is byte offset 0x200 (512) and sector ID 0x00 0x00 0x02 (512 / 256 = 2).
 2. The last 6 bytes of every sector contain the sector ID of the neighboring previous and next sectors. e.g. at sector 56 (0x00 0x00 0x38), the neighbouring sector IDs would be 0x00 0x00 0x36 and 0x00 0x00 0x40. Thus, the last 6 bytes of the sector are 0x00 0x00 0x38 0x00 0x00 0x40. The exeption to this is the first sector, which has the last 6 bytes 0x00, except for the last 3, which corresponds to the last empty sector ID on the disk. This means that each sector on the disk can only contain 506 bytes of other data.
 3. Three types of sectors make up the disk:
-   a) Disk info sector (1 sector)
-   b) File index sectors (256 sectors), each sector describing details and metadata for one file.
-   c) Data sectors (remainder of disk), each sector containing a portion (506 bytes) of data from a file.
+   - Disk info sector (1 sector)
+   - File index sectors (256 sectors), each sector describing details and metadata for one file.
+   - Data sectors (remainder of disk), each sector containing a portion (506 bytes) of data from a file.
 
 ### Disk Sector
 The first sector contains information about the disk, in the format:
-   a) 4 bytes: Disk header, value "MJAE" = 0x4d 0x4a 0x41 0x45
-   b) 4 bytes: Number of sectors in the "index" region, default value 260 = 0x00 0x00 0x01 0x04 (This is not confirmed, but an educated guess)
-   c) 32 bytes: Disk name, in ASCII, default value "My MMC" = 0x4d 0x79 0x20 0x4d 0x4d 0x43
-   d) 2 bytes: Number of files on the disk (0x00 0x00)
-   e) 4 bytes: Total capacity of the disk, in bytes (e.g. 64MB MMC card = 63472640 bytes = 0x03 0xc8 0x84 0x00)
-   f) 4 bytes: Free physical space on the disk in bytes (e.g. 17M = 17094198 bytes = 0x01 0x04 0xd6 0x36)
-   g) 4 bytes: Free capacity on the disk, using 506 bytes of capacity per 512 bytes of sectors (e.g 17094198 bytes physical free space / 512 physical bytes per sector * 506 capacity bytes per sector = 16893822 bytes capacity = 0x01 0x01 0xC7 0x7E)
-   h) rest of sector is empty (0x00).
+1. 4 bytes: Disk header, value "MJAE" = 0x4d 0x4a 0x41 0x45
+2. 4 bytes: Number of sectors in the "index" region, default value 260 = 0x00 0x00 0x01 0x04 (This is not confirmed, but an educated guess)
+3. 32 bytes: Disk name, in ASCII, default value "My MMC" = 0x4d 0x79 0x20 0x4d 0x4d 0x43
+4. 2 bytes: Number of files on the disk (0x00 0x00)
+5. 4 bytes: Total capacity of the disk, in bytes (e.g. 64MB MMC card = 63472640 bytes = 0x03 0xc8 0x84 0x00)
+6. 4 bytes: Free physical space on the disk in bytes (e.g. 17M = 17094198 bytes = 0x01 0x04 0xd6 0x36)
+7. 4 bytes: Free capacity on the disk, using 506 bytes of capacity per 512 bytes of sectors (e.g 17094198 bytes physical free space / 512 physical bytes per sector * 506 capacity bytes per sector = 16893822 bytes capacity = 0x01 0x01 0xC7 0x7E)
+8. Rest of sector is empty (0x00).
 
 ### Second sector
 The second sector is empty (0x00).
