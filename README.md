@@ -15,7 +15,7 @@ You might be thinking, why not just take the card out, and copy music that way? 
 
 This tools works directly with an MMC card in a card reader -- there is no need to use the Visor for file transfer, which makes the process significantly quicker!
 
-At present, the tool uses windows python bindings to perform raw disk access -- some relatively trivial changes would be required to perform those functions on mac or linux.
+At present, the tool uses windows python bindings to perform raw disk access -- some [relatively trivial changes would be required to perform those functions on mac or linux](https://blog.lifeeth.in/2011/03/reading-raw-disks-with-python.html).
 
 For any questions about this tool or the minijam springboard card, feel free to contact me, at <myusername> at gmail.com. I imagine that less than 10 people on the planet would ever use this tool, so if you do find it useful. Please let me know! :)
 
