@@ -15,10 +15,9 @@ You might be thinking, why not just take the card out, and copy music that way? 
 
 This tools works directly with an MMC card in a card reader -- there is no need to use the Visor for file transfer, which makes the process significantly quicker!
 
-For any questions about this tool or the minijam springboard card, feel free to contact me, at <myusername> at gmail.com.
+At present, the tool uses windows python bindings to perform raw disk access -- some relatively trivial changes would be required to perform those functions on mac or linux.
 
-
-
+For any questions about this tool or the minijam springboard card, feel free to contact me, at <myusername> at gmail.com. I imagine that less than 10 people on the planet would ever use this tool, so if you do find it useful. Please let me know! :)
 
 ## Minijam MMC File System
 I hope to provide a very brief overview of what I uncovered about the Minijam file system.
@@ -60,7 +59,3 @@ Each index sector describes the name, size, and metadata of the files, as well a
 
 ### Data Sectors
 The data sectors are raw 506 slices of each file.
-
-
-
- 
